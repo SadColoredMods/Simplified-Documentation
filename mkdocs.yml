@@ -1,0 +1,40 @@
+site_name: Simplified Documentation
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - codehilite
+  - abbr
+  - attr_list
+nav:
+  - Home: index.md
+  - About: about.md
+  - Features:
+    - Item System: features/itemsystem.md
+    - Splash Screen: features/splashscreen.md
+theme:
+  favicon: image/favicon.png
+  features:
+    - content.tooltips
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+  palette: 
+    - scheme: slate
+      primary: green
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    - scheme: default
+      primary: light green
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  name: material
