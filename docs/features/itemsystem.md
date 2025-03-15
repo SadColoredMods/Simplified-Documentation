@@ -33,13 +33,13 @@ public class Item : BaseItem
 
 Here, you can inherit from many different methods such as:
 ```cs
-public virtual void OnUse() { }
+public virtual bool OnUse() { }
 public virtual void OnSelect() { }
 public virtual void OnDeselect() { }
 public virtual void OnPickup() { }
 ```
 
-When you're inheriting from ```base.OnUse()```, you can modify ```base.DontRemoveItem```, this will not remove the item after usage if set to true. It defaults to false if not specified. **DONT USE THIS FOR ITEM USE COUNTS, AS THAT'S PREHANDLED BY SIMPLIFIED**. Instead, use it for situations like when the player has used the quarter, but theres no vending machine infront of them, so the item doesnt get removed.
+When you're inheriting from ```base.OnUse()```, you need to return a boolean, false will mean it shouldn't be counted as a use, true will mean it should be counted as a use. **DONT USE THIS FOR ITEM USE COUNTS, AS THAT'S PREHANDLED BY SIMPLIFIED**. Instead, use it for situations like when the player has used the quarter, but theres no vending machine infront of them, so the item doesnt get removed.
 
 It is automatically reverted back to false after the method has ended.
 
@@ -49,9 +49,10 @@ using UnityEngine;
 
 public class Item : BaseItem
 {
-    public override void OnUse()
+    public override bool OnUse()
     {
         Debug.Log("use :o");
+        return true;
     }
 }
 ```
@@ -65,16 +66,15 @@ using UnityEngine;
 
 public class Item : BaseItem
 {
-    public override void OnUse()
+    public override bool OnUse()
     {
         if (SendRay("Door", out RaycastHit Ray))
         {
             Debug.Log($"found {Ray.transform.gameObject.name} :D");
+            return true;
         }
-        else
-        {
-            DontRemoveItem = true;
-        }
+
+        return false;
     }
 }
 ```
